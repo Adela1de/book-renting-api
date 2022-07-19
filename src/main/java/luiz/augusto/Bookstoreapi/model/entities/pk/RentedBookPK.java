@@ -8,11 +8,12 @@ import luiz.augusto.Bookstoreapi.model.entities.Renting;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Embeddable
 @Getter
 @Setter
-public class RentedBookPK {
+public class RentedBookPK implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "renting_id")

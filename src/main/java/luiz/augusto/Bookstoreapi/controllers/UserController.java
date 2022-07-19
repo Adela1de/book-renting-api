@@ -20,7 +20,7 @@ public class UserController {
     @GetMapping(path = "{userId}")
     public ResponseEntity<UserDTO> findById(@PathVariable Long userId)
     {
-        User user = userService.getUserById(userId);
+        var user = userService.getUserById(userId);
         UserDTO userDTO = UserMapper.toUserDTO(user);
         return ResponseEntity.ok(userDTO);
     }
@@ -28,7 +28,7 @@ public class UserController {
     @PostMapping(path = "/register")
     public ResponseEntity<Void> registerUser(@RequestBody UserPostRequestBody userPostRequestBody)
     {
-        User user = UserMapper.toUser(userPostRequestBody);
+        var user = UserMapper.toUser(userPostRequestBody);
         userService.createUser(user);
         return ResponseEntity.noContent().build();
     }
