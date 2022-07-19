@@ -34,6 +34,8 @@ public class User implements Serializable {
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> booksLiked = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Renting> rentings = new ArrayList<>();
 
     public User(String username, String password, String email)
     {

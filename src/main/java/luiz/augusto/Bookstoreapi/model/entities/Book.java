@@ -30,12 +30,19 @@ public class Book implements Serializable {
     private List<Category> categories = new ArrayList<>();
     @ManyToMany(mappedBy = "booksLiked")
     private List<User> likedBy = new ArrayList<>();
+    private int quantityInStock;
 
     public Book(String title, String author, String publication)
     {
         this.title = title;
         this.author = author;
         this.publication = publication;
+        this.quantityInStock = 10;
     }
 
+    public boolean hasStock()
+    {
+        if(quantityInStock == 0) return false;
+        else return true;
+    }
 }
