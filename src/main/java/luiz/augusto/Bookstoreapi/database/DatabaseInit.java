@@ -1,14 +1,14 @@
 package luiz.augusto.Bookstoreapi.database;
 
 import lombok.RequiredArgsConstructor;
-import luiz.augusto.Bookstoreapi.model.entities.Book;
-import luiz.augusto.Bookstoreapi.model.entities.Category;
-import luiz.augusto.Bookstoreapi.model.entities.User;
+import luiz.augusto.Bookstoreapi.model.entities.*;
+import luiz.augusto.Bookstoreapi.model.entities.enums.RentingStatus;
 import luiz.augusto.Bookstoreapi.repositories.BookRepository;
 import luiz.augusto.Bookstoreapi.repositories.CategoryRepository;
 import luiz.augusto.Bookstoreapi.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 @Service
@@ -21,17 +21,17 @@ public class DatabaseInit {
 
     public void createObjectsForTesting()
     {
-        User u1 = new User("Adelaide", "3104", "luizadelaide@gmail.com");
-        User u2 = new User("Nathalia", "3104", "nathaliaadelaide@gmail.com");
-        User u3 = new User("Joao", "6666", "joaojoao@gmail.com");
+        var u1 = new User("Adelaide", "3104", "luizadelaide@gmail.com");
+        var u2 = new User("Nathalia", "3104", "nathaliaadelaide@gmail.com");
+        var u3 = new User("Joao", "6666", "joaojoao@gmail.com");
 
-        Book b1 = new Book("1984", "George Orwell", "Secker & Warburg");
-        Book b2 = new Book("The little prince", "Antoine de Saint-Exupéry", "Reynal & Hitchcock");
-        Book b3 = new Book("american psycho", "Bret Easton Ellis", "Vintage");
+        var b1 = new Book("1984", "George Orwell", "Secker & Warburg");
+        var b2 = new Book("The little prince", "Antoine de Saint-Exupéry", "Reynal & Hitchcock");
+        var b3 = new Book("american psycho", "Bret Easton Ellis", "Vintage");
 
-        Category cat1 = new Category("dystopia ","Books where the events takes place in a dystopian universe");
-        Category cat2 = new Category("Children's literature", "Books for kids");
-        Category cat3 = new Category("thriller", "books about thriller");
+        var cat1 = new Category("dystopia ","Books where the events takes place in a dystopian universe");
+        var cat2 = new Category("Children's literature", "Books for kids");
+        var cat3 = new Category("thriller", "books about thriller");
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
         bookRepository.saveAll(Arrays.asList(b1, b2, b3));
@@ -48,6 +48,7 @@ public class DatabaseInit {
         u3.getBooksLiked().add(b3);
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
+
 
     }
 }

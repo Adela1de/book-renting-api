@@ -3,7 +3,6 @@ package luiz.augusto.Bookstoreapi.controllers;
 import lombok.RequiredArgsConstructor;
 import luiz.augusto.Bookstoreapi.dtos.UserDTO;
 import luiz.augusto.Bookstoreapi.mappers.UserMapper;
-import luiz.augusto.Bookstoreapi.model.entities.User;
 import luiz.augusto.Bookstoreapi.requests.UserPostRequestBody;
 import luiz.augusto.Bookstoreapi.services.UserService;
 import org.springframework.http.ResponseEntity;
