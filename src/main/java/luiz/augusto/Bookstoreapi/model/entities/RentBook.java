@@ -47,9 +47,9 @@ public class RentBook implements Serializable {
         this.rentingStatus = rentingStatus.getCode();
     }
 
-    public Integer getRentingStatus()
+    public RentingStatus getRentingStatus()
     {
-        return rentingStatus;
+        return RentingStatus.valueOf(rentingStatus);
     }
 
 }
