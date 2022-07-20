@@ -1,5 +1,6 @@
 package luiz.augusto.Bookstoreapi.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,9 @@ public class Book implements Serializable {
     @ManyToMany(mappedBy = "booksLiked")
     private List<User> likedBy = new ArrayList<>();
     private int quantityInStock;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "rentedBooks")
+    private List<RentBook> rents = new ArrayList<>();
 
     public Book(String title, String author, String publication)
     {

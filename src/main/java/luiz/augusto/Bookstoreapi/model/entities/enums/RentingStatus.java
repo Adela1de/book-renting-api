@@ -6,8 +6,7 @@ public enum RentingStatus {
 
     WAITING_PAYMENT(1),
     RENTED(2),
-    RETURN_DATE_EXPIRED(3),
-    OUT_OF_STOCK(4);
+    RETURN_DATE_EXPIRED(3);
 
     @Getter
     private int code;
