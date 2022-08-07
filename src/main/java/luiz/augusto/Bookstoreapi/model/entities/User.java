@@ -36,6 +36,8 @@ public class User implements Serializable {
     private List<Book> booksLiked = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<RentBook> rents = new ArrayList<>();
+    private String role;
+    private boolean enabled = false;
 
     public User(String username, String password, String email)
     {

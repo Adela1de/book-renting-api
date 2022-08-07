@@ -1,12 +1,19 @@
 package luiz.augusto.Bookstoreapi.controllers;
 
 import lombok.RequiredArgsConstructor;
-import luiz.augusto.Bookstoreapi.dtos.UserDTO;
+import luiz.augusto.Bookstoreapi.dtos.BookDTO;
+import luiz.augusto.Bookstoreapi.dtos.RentBookDTO;
+import luiz.augusto.Bookstoreapi.mappers.BookMapper;
+import luiz.augusto.Bookstoreapi.mappers.RentBookMapper;
 import luiz.augusto.Bookstoreapi.mappers.UserMapper;
-import luiz.augusto.Bookstoreapi.requests.UserPostRequestBody;
+import luiz.augusto.Bookstoreapi.model.entities.Book;
+import luiz.augusto.Bookstoreapi.model.entities.RentBook;
 import luiz.augusto.Bookstoreapi.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,20 +23,28 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(path = "{userId}")
-    public ResponseEntity<UserDTO> findById(@PathVariable Long userId)
+    @GetMapping("/liked/{userId}")
+    public ResponseEntity<Iterable<BookDTO>> getLikedBooks(@RequestParam Long userId)
     {
-        var user = userService.getUserById(userId);
-        UserDTO userDTO = UserMapper.toUserDTO(user);
-        return ResponseEntity.ok(userDTO);
+        return ResponseEntity.ok(
+                userService.
+                getLikedBooks(userId).
+                stream().
+                map(BookMapper::toBookDTO).
+                collect(Collectors.toList())
+        );
     }
 
-    @PostMapping(path = "/register")
-    public ResponseEntity<Void> registerUser(@RequestBody UserPostRequestBody userPostRequestBody)
+    @GetMapping("/rents/{userId}")
+    public ResponseEntity<Iterable<RentBookDTO>> getUserRents(@RequestParam Long userId)
     {
-        var user = UserMapper.toUser(userPostRequestBody);
-        userService.createUser(user);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(
+                userService.
+                getRentsByUser(userId).
+                stream().
+                map(RentBookMapper::toRentBookDTO).
+                collect(Collectors.toList())
+        );
     }
 
 }

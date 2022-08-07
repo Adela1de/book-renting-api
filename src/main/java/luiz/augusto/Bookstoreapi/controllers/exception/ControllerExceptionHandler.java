@@ -11,7 +11,7 @@ import javax.servlet.ServletRequest;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler
+    @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<StandardError> objectNotFoundException(
             ObjectNotFoundException e, ServletRequest s)
     {
